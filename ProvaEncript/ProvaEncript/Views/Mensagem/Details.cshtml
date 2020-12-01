@@ -1,0 +1,38 @@
+﻿@model ProvaEncript.Models.MensagemModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MensagemModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Mensagem Encriptada: ")
+        </dt>
+
+        <dd>
+            @{
+                var msgE = TempData["msgE"].ToString();
+
+                @Html.Label(msgE);
+                }
+        </dd>
+        <dt>
+            @Html.Label("Mensagem Decriptada: ")
+        </dt>
+
+        <dd>
+            @{
+                var msgD = TempData["msgD"].ToString();
+
+                @Html.Label(msgD);
+            }
+        </dd>
+
+    </dl>
+</div>
+
