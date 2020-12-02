@@ -21,25 +21,6 @@ namespace ProvaEncript.Controllers
         {
             List<MensagemModel> mensagens = db.Mensagens.ToList();
 
-            //AesCryptoServiceProvider
-            AesCryptoServiceProvider aes = new AesCryptoServiceProvider();
-            aes.BlockSize = 128;
-            aes.KeySize = 256;
-            aes.IV = Encoding.UTF8.GetBytes(AesIV256BD);
-            aes.Key = Encoding.UTF8.GetBytes(AesKey256BD);
-            aes.Mode = CipherMode.CBC;
-            aes.Padding = PaddingMode.PKCS7;
-
-            for (int i = 0; i < mensagens.Count; i++)
-            {
-                byte[] src = Convert.FromBase64String(mensagens[i].Mensagem);
-
-                using (ICryptoTransform decrypt = aes.CreateDecryptor())
-                {
-                    byte[] dest = decrypt.TransformFinalBlock(src, 0, src.Length);
-                    mensagens[i].Mensagem = Encoding.Unicode.GetString(dest);
-                }
-            }
             return View(mensagens.ToList());
         }
 
